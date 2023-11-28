@@ -2,7 +2,7 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Button, SafeAreaView, Text, TextInput} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
@@ -15,8 +15,8 @@ function App(): JSX.Element {
     if (email && password) {
       auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          console.log('User account created & signed in!');
+        .then(res => {
+          setResult(JSON.stringify(res));
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
@@ -35,16 +35,22 @@ function App(): JSX.Element {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        console.log(res);
+        setResult(JSON.stringify(res));
       })
       .catch(err => console.log(err));
   };
 
-  useEffect(() => {
-    setResult(JSON.stringify({email: email, password: password}));
+  const signOut = () => {
+    auth()
+      .signOut()
+      .then(res => setResult(JSON.stringify(res)))
+      .catch(err => console.log(err));
+  };
+
+  const checkOut = () => {
     const user = auth().currentUser;
     console.log('currentUser', user);
-  }, [email, password]);
+  };
 
   return (
     <SafeAreaView>
@@ -62,6 +68,8 @@ function App(): JSX.Element {
 
       <Button title="sign up" onPress={signUp} />
       <Button title="sign in" onPress={signIn} />
+      <Button title="sign out" onPress={signOut} />
+      <Button title="checkOut" onPress={checkOut} />
 
       <Text>{result}</Text>
     </SafeAreaView>
