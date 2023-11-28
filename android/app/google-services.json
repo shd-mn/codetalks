@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266963506137",
+    "project_id": "mobile-test-project-585df",
+    "storage_bucket": "mobile-test-project-585df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266963506137:android:d51d2e4cbc389ff1f93fc8",
+        "android_client_info": {
+          "package_name": "com.codetalks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmv6KFYsbAHIjP0tM2Vt-tpZpX40XaesA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
