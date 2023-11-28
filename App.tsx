@@ -31,6 +31,15 @@ function App(): JSX.Element {
     }
   };
 
+  const signIn = () => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
+
   useEffect(() => {
     setResult(JSON.stringify({email: email, password: password}));
     const user = auth().currentUser;
@@ -52,7 +61,7 @@ function App(): JSX.Element {
       />
 
       <Button title="sign up" onPress={signUp} />
-      {/* <Button title="sign in" onPress={signIn} /> */}
+      <Button title="sign in" onPress={signIn} />
 
       <Text>{result}</Text>
     </SafeAreaView>
