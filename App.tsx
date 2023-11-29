@@ -66,6 +66,18 @@ function App(): JSX.Element {
     });
   };
 
+  const listenDB = () => {
+    const reference = firebase
+      .app()
+      .database(
+        'https://mobile-test-project-585df-default-rtdb.europe-west1.firebasedatabase.app/',
+      )
+      .ref('books');
+    reference.on('value', snapshot => {
+      console.log(snapshot.val());
+    });
+  };
+
   return (
     <SafeAreaView>
       <Text>React Native Firebase</Text>
@@ -86,6 +98,7 @@ function App(): JSX.Element {
       <Button title="checkOut" onPress={checkOut} />
 
       <Button title="check database" onPress={checkDB} />
+      <Button title="listen database" onPress={listenDB} />
 
       <Text>{result}</Text>
     </SafeAreaView>
