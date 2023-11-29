@@ -5,6 +5,7 @@
 import React, {useState} from 'react';
 import {Button, SafeAreaView, Text, TextInput} from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {firebase} from '@react-native-firebase/database';
 
 function App(): JSX.Element {
   const [email, setEmail] = useState('jane.doe@example.com');
@@ -52,6 +53,19 @@ function App(): JSX.Element {
     console.log('currentUser', user);
   };
 
+  const checkDB = () => {
+    const reference = firebase
+      .app()
+      .database(
+        'https://mobile-test-project-585df-default-rtdb.europe-west1.firebasedatabase.app/',
+      )
+      .ref('blogs');
+
+    reference.once('value').then(snapshot => {
+      console.log(snapshot.val());
+    });
+  };
+
   return (
     <SafeAreaView>
       <Text>React Native Firebase</Text>
@@ -70,6 +84,8 @@ function App(): JSX.Element {
       <Button title="sign in" onPress={signIn} />
       <Button title="sign out" onPress={signOut} />
       <Button title="checkOut" onPress={checkOut} />
+
+      <Button title="check database" onPress={checkDB} />
 
       <Text>{result}</Text>
     </SafeAreaView>
