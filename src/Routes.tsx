@@ -9,7 +9,16 @@ const Stack = createNativeStackNavigator();
 function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#071A40',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
         <Stack.Screen
           name="Home"
           component={Home}
@@ -18,7 +27,10 @@ function Routes() {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{headerBackTitle: 'Back', headerTitle: ''}}
+          options={{
+            headerBackTitle: 'Back',
+            headerTitle: '',
+          }}
         />
         <Stack.Screen
           name="Sign"
