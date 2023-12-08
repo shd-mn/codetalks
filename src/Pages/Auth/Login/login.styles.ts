@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../../styles/global';
 export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#071A40',
+    backgroundColor: Colors.bg,
   },
   title: {
     fontSize: 28,
-    color: '#fff',
+    color: Colors.white,
     textAlign: 'center',
     marginBottom: 20,
   },
@@ -19,7 +20,7 @@ export default StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 40,
     textAlign: 'center',
-    color: '#fff',
+    color: Colors.white,
     padding: 10,
   },
 });

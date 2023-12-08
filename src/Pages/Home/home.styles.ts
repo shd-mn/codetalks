@@ -1,10 +1,12 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {Colors} from '../../styles/global';
 const window = Dimensions.get('window');
+
 export default StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#071A40',
+    backgroundColor: Colors.bg_dark,
   },
   bgImg: {
     position: 'absolute',
@@ -18,14 +20,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
   },
   logoText: {
     fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#fff',
+    letterSpacing: 1.5,
+    color: Colors.white,
   },
   content: {
     flex: 1,
@@ -34,8 +37,9 @@ export default StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#fff',
+    color: Colors.white,
+    marginBottom: 5,
   },
-  desc: {fontSize: 16, textAlign: 'center', color: '#fff'},
+  desc: {fontSize: 16, textAlign: 'center', color: Colors.white, opacity: 0.7},
   btnContainer: {flex: 1, gap: 15, width: '100%'},
 });
