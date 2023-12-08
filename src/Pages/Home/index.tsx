@@ -8,12 +8,14 @@ function Home({navigation}: {navigation: any}) {
   };
   return (
     <SafeAreaView style={styles.container}>
+      {/* Background Image */}
       <Image
         style={styles.bgImg}
         source={require('../../assets/bg.jpg')}
         alt="bg"
         resizeMode="cover"
       />
+      {/* Logo */}
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
@@ -23,6 +25,7 @@ function Home({navigation}: {navigation: any}) {
         />
         <Text style={styles.logoText}>CODETALKS</Text>
       </View>
+      {/* Content */}
       <View style={styles.content}>
         <Text style={styles.title}>Welcome to Codetalks</Text>
         <Text style={styles.desc}>
@@ -30,9 +33,14 @@ function Home({navigation}: {navigation: any}) {
           molestiae quo et!
         </Text>
       </View>
+      {/* Btn container */}
       <View style={styles.btnContainer}>
         <Button title="Sign In" onPress={() => handlePress('Sign')} />
-        <Button title="Login" onPress={() => handlePress('Login')} />
+        <Button
+          title="Login"
+          theme={'secondary'}
+          onPress={() => handlePress('Login')}
+        />
       </View>
     </SafeAreaView>
   );

@@ -1,17 +1,39 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {ActivityIndicator, View, Text, TouchableOpacity} from 'react-native';
 
-import styles from './Button.styles';
+import styles from './buttonn.styles';
 
 type PropTypes = {
   title: string;
+  isLoading?: boolean;
+  iconStart?: any;
+  iconEnd?: any;
   onPress: () => void;
+  theme?: 'primary' | 'secondary';
 };
 
-function Button({title, onPress}: PropTypes) {
+function Button({
+  title,
+  iconStart,
+  iconEnd,
+  isLoading = false,
+  theme = 'primary',
+  onPress,
+}: PropTypes) {
   return (
-    <TouchableOpacity style={styles.btn} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity
+      style={styles[`${theme}`].container}
+      onPress={onPress}
+      disabled={isLoading}>
+      {isLoading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <View style={styles[`${theme}`].btn_container}>
+          {iconStart && iconStart}
+          <Text style={styles[`${theme}`].title}>{title}</Text>
+          {iconEnd && iconEnd}
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
