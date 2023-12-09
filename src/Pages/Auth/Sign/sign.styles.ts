@@ -13,7 +13,7 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    gap: 20,
+    gap: 25,
     marginBottom: 30,
   },
 });
