@@ -13,8 +13,8 @@ export default StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    gap: 20,
-    marginBottom: 15,
+    gap: 25,
+    marginBottom: 30,
   },
   recover: {
     marginTop: 'auto',
