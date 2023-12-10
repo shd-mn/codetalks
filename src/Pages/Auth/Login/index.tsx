@@ -3,9 +3,11 @@ import {SafeAreaView, View, Text} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import auth from '@react-native-firebase/auth';
+import {showMessage} from 'react-native-flash-message';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/UI/Button';
 import styles from './login.styles';
+import authErrorMessageParser from '../../../utils/authErrorMessageParser';
 
 interface initialState {
   email: string;
@@ -27,8 +29,16 @@ function Login() {
         values.password,
       );
       console.log(user);
-    } catch (err) {
+      // TODO: error type
+    } catch (err: any) {
       console.log(err);
+
+      if (err.code) {
+        showMessage({
+          message: authErrorMessageParser(err.code) || 'Something went wrong',
+          type: 'danger',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
