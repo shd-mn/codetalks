@@ -3,19 +3,15 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
 import Routes from './src/Routes';
-
+import FlashMessage from 'react-native-flash-message';
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <Routes />
-    </SafeAreaView>
+      <FlashMessage position="top" />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {flex: 1},
-});
 
 export default App;
