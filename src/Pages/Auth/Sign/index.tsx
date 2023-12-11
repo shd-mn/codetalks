@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import auth from '@react-native-firebase/auth';
+import authErrorMessageParser from '../../../utils/authErrorMessageParser';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/UI/Button';
 import styles from './sign.styles';
+import {showMessage} from 'react-native-flash-message';
+import {signValidationSchema} from './utils/validationSchema';
 
+type PropTypes = {
+  navigation: {
+    navigate: (routeName: string) => void;
+  };
+};
 interface initialState {
   email: string;
   password: string;
@@ -19,18 +26,29 @@ const initialForm: initialState = {
   repassword: '',
 };
 
-function Sign() {
+function Sign({navigation}: {navigation: PropTypes}) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handFormSubmit = async (formValues: initialState) => {
+  const handleFormSubmit = async (formValues: initialState) => {
     setIsLoading(true);
     try {
       await auth().createUserWithEmailAndPassword(
         formValues.email,
         formValues.password,
       );
-    } catch (err) {
-      console.log(err);
+      showMessage({
+        message: 'User created',
+        type: 'success',
+      });
+      navigation.navigate('Login');
+      // TODO: error type
+    } catch (err: any) {
+      if (err.code) {
+        showMessage({
+          message: authErrorMessageParser(err.code) || 'Something went wrong',
+          type: 'danger',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -43,18 +61,8 @@ function Sign() {
       </View>
       <Formik
         initialValues={initialForm}
-        onSubmit={handFormSubmit}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .email('Invalid email adress')
-            .required('Email is required'),
-          password: Yup.string()
-            .min(5, 'Password must be at least 5 characters')
-            .required('Password is required'),
-          repassword: Yup.string()
-            .oneOf([Yup.ref('password')], 'Password must match')
-            .required('Required'),
-        })}>
+        onSubmit={handleFormSubmit}
+        validationSchema={signValidationSchema}>
         {({values, errors, touched, handleChange, handleSubmit}) => (
           <>
             <View style={styles.inputContainer}>

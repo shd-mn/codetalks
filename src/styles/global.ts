@@ -15,6 +15,8 @@ export const Colors = {
   clr_2: '#F085F2',
   white: '#fff',
   black: '#000',
+
+  danger: '#FF6247',
 };
 
 export default {
