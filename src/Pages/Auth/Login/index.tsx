@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import auth from '@react-native-firebase/auth';
 import {showMessage} from 'react-native-flash-message';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/UI/Button';
 import styles from './login.styles';
 import authErrorMessageParser from '../../../utils/authErrorMessageParser';
+import {validationSchema} from './utils/validationSchema';
 
 interface initialState {
   email: string;
@@ -24,15 +24,9 @@ function Login() {
   const handleFormSubmit = async (values: initialState) => {
     setIsLoading(true);
     try {
-      const user = await auth().signInWithEmailAndPassword(
-        values.email,
-        values.password,
-      );
-      console.log(user);
+      await auth().signInWithEmailAndPassword(values.email, values.password);
       // TODO: error type
     } catch (err: any) {
-      console.log(err);
-
       if (err.code) {
         showMessage({
           message: authErrorMessageParser(err.code) || 'Something went wrong',
@@ -52,14 +46,7 @@ function Login() {
       <Formik
         initialValues={initialForm}
         onSubmit={handleFormSubmit}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .email('Invalid email adress')
-            .required('Email is required'),
-          password: Yup.string()
-            .min(5, 'Password must be at least 5 characters')
-            .required('Password is required'),
-        })}>
+        validationSchema={validationSchema}>
         {({values, errors, touched, handleChange, handleSubmit}) => (
           <>
             <View style={styles.inputContainer}>
