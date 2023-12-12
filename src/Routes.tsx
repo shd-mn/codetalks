@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './Pages/Home';
 import Login from './Pages/Auth/Login';
 import Sign from './Pages/Auth/Sign';
+import ServerRooms from './Pages/ServerRooms';
 
 const Stack = createNativeStackNavigator();
 function Routes() {
@@ -37,6 +38,13 @@ function Routes() {
           component={Sign}
           options={{
             headerBackTitle: 'Back',
+            headerTitle: '',
+          }}
+        />
+        <Stack.Screen
+          name="ServerRooms"
+          component={ServerRooms}
+          options={{
             headerTitle: '',
           }}
         />
