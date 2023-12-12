@@ -1,10 +1,10 @@
 import React from 'react';
 import {ActivityIndicator, View, Text, TouchableOpacity} from 'react-native';
 
-import styles from './buttonn.styles';
+import styles from './button.styles';
 
 type PropTypes = {
-  title: string;
+  title?: string;
   isLoading?: boolean;
   iconStart?: any;
   iconEnd?: any;
@@ -30,7 +30,7 @@ function Button({
       ) : (
         <View style={styles[`${theme}`].btn_container}>
           {iconStart && iconStart}
-          <Text style={styles[`${theme}`].title}>{title}</Text>
+          {title && <Text style={styles[`${theme}`].title}>{title}</Text>}
           {iconEnd && iconEnd}
         </View>
       )}
