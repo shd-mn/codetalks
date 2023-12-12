@@ -9,6 +9,11 @@ import styles from './login.styles';
 import authErrorMessageParser from '../../../utils/authErrorMessageParser';
 import {validationSchema} from './utils/validationSchema';
 
+type PropTypes = {
+  navigation: {
+    navigate: (routeName: string) => void;
+  };
+};
 interface initialState {
   email: string;
   password: string;
@@ -19,12 +24,13 @@ const initialForm: initialState = {
   password: '',
 };
 
-function Login() {
+function Login({navigation}: PropTypes) {
   const [isLoading, setIsLoading] = useState(false);
   const handleFormSubmit = async (values: initialState) => {
     setIsLoading(true);
     try {
       await auth().signInWithEmailAndPassword(values.email, values.password);
+      navigation.navigate('ServerRooms');
       // TODO: error type
     } catch (err: any) {
       if (err.code) {

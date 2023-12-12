@@ -26,7 +26,7 @@ const initialForm: initialState = {
   repassword: '',
 };
 
-function Sign({navigation}: {navigation: PropTypes}) {
+function Sign({navigation}: PropTypes) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = async (formValues: initialState) => {
