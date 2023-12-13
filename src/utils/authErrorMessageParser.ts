@@ -8,6 +8,8 @@ function authErrorMessageParser(errorCode: string) {
       return 'Wrong email';
     case 'auth/user-not-found':
       return 'User not found';
+    case 'auth/weak-password':
+      return 'Password is weak';
     default:
       errorCode;
   }

@@ -3,6 +3,7 @@ import {Colors} from '../../../styles/global';
 export default StyleSheet.create({
   container: {
     position: 'relative',
+    width: '100%',
   },
   input: {
     marginBottom: 3,
