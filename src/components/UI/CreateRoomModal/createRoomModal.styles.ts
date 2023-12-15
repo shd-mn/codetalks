@@ -2,20 +2,21 @@ import {StyleSheet} from 'react-native';
 import {Colors} from '../../../styles/global';
 
 export default StyleSheet.create({
-  centeredView: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    marginTop: 22,
-    margin: 20,
   },
   modalView: {
-    margin: 20,
     gap: 15,
+    justifyContent: 'center',
+    borderTopStartRadius: 10,
+    borderTopEndRadius: 10,
+
+    height: '50%',
     width: '100%',
     backgroundColor: Colors.primary_dark,
-    borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -26,25 +27,10 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    color: 'white',
+  modalTitle: {
+    fontSize: 20,
     marginBottom: 15,
     textAlign: 'center',
+    color: 'white',
   },
 });
